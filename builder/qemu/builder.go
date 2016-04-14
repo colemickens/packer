@@ -359,19 +359,10 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (packe
 			HTTPPortMin: b.config.HTTPPortMin,
 			HTTPPortMax: b.config.HTTPPortMax,
 		},
-		new(stepForwardSSH),
-		new(stepConfigureVNC),
 		steprun,
 		&stepBootWait{},
 		&stepTypeBootCommand{},
-		&communicator.StepConnect{
-			Config:    &b.config.Comm,
-			Host:      commHost,
-			SSHConfig: sshConfig,
-			SSHPort:   commPort,
-		},
-		new(common.StepProvision),
-		new(stepShutdown),
+		new(stepWaitForShutdown),
 		new(stepConvertDisk),
 	)
 
