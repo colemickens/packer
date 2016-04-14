@@ -359,6 +359,7 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (packe
 			HTTPPortMin: b.config.HTTPPortMin,
 			HTTPPortMax: b.config.HTTPPortMax,
 		},
+		new(stepConfigureVNC),
 		steprun,
 		&stepBootWait{},
 		&stepTypeBootCommand{},

@@ -62,7 +62,7 @@ func getCommandArgs(bootDrive string, state multistep.StateBag) ([]string, error
 	config := state.Get("config").(*Config)
 	isoPath := state.Get("iso_path").(string)
 	vncPort := state.Get("vnc_port").(uint)
-	sshHostPort := state.Get("sshHostPort").(uint)
+	var sshHostPort uint = 10000
 	ui := state.Get("ui").(packer.Ui)
 	driver := state.Get("driver").(Driver)
 
